@@ -10,14 +10,14 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-class InsertionSorterTest {
+class BubbleSorterTest {
 
-        InsertionSorter<ScanPoint> sorter;
+        BubbleSorter<ScanPoint> sorter;
         List<ScanPoint> scanPoints;
 
         @BeforeEach
         void setUp() {
-                sorter = new InsertionSorter<>();
+                sorter = new BubbleSorter<>();
                 scanPoints = ScanPointForTesting.unsortedScanPoints();
         }
 
@@ -27,18 +27,17 @@ class InsertionSorterTest {
         }
 
         /**
-         * Test method for sorting a list of @{@link ScanPoint} using Insertion Sort
+         * Test method for sorting a list of @{@link ScanPoint} using Bubble Sort
          * from further ScanPoints to closer ScanPoints in the list.
          */
         @Test
-        void testInsertionSortOnScanPoints() {
+        void testBubbleSortOnScanPoints() {
                 sorter.sort(scanPoints);
 
                 List<ScanPoint> expected = ScanPointForTesting.sortedScanPoints();
 
                 assertListsEqual(expected, scanPoints);
         }
-
 
         /**
          * Asserts that each @{@link ScanPoint} in a list is equal to the ScanPoint in the same position of another list

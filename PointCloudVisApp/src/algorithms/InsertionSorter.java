@@ -1,10 +1,10 @@
 package algorithms;
 
-import java.util.Collections;
 import java.util.List;
 
 /**
  * Insertion sorting algorithm
+ *
  * @param <T> Generic type that extends @{@link Comparable}
  * @author Selma Abbassi
  */
@@ -12,6 +12,7 @@ public class InsertionSorter<T extends Comparable<? super T>> implements Sorter<
 
         /**
          * Sorts a @{@link List} using @{@link Comparable#compareTo(Object)}
+         *
          * @param list of generic types that extend @{@link Comparable}
          */
         @Override
@@ -21,13 +22,19 @@ public class InsertionSorter<T extends Comparable<? super T>> implements Sorter<
 
                 for (int i = low + 1; i < high; i++) {
                         for (int k = i; k >= low + 1; k--) {
-                                T current = list.get(k);
-                                T previous = list.get(k - 1);
-                                if(current.compareTo(previous) < 0) {
-                                        Collections.swap(list, list.indexOf(current), list.indexOf(previous));
+                                if (list.get(k).compareTo(list.get(k - 1)) < 0) {
+                                        swap(list, k, k - 1);
                                 }
                         }
                 }
+        }
+
+        private void swap(List<T> list, int i, int k) {
+                T elementToSwap = list.get(i);
+                T elementToSwapWith = list.get(k);
+
+                list.set(i, elementToSwapWith);
+                list.set(k, elementToSwap);
         }
 
         @Override
