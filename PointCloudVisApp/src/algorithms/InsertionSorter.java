@@ -11,7 +11,7 @@ import java.util.List;
 public class InsertionSorter<T extends Comparable<? super T>> implements Sorter<T> {
 
         /**
-         * Sorts a @{@link List} using @{@link Comparable#compareTo(Object)} in lower to higher order
+         * Sorts a @{@link List} using @{@link Comparable#compareTo(Object)}
          * @param list of generic types that extend @{@link Comparable}
          */
         @Override
