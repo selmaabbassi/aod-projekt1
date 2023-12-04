@@ -8,14 +8,14 @@ import org.junit.jupiter.api.Test;
 
 import java.util.List;
 
-class InsertionSorterTest {
 
-        InsertionSorter<ScanPoint> sorter;
+class MergeSorterTest {
+        MergeSorter<ScanPoint> sorter;
         List<ScanPoint> scanPoints;
 
         @BeforeEach
         void setUp() {
-                sorter = new InsertionSorter<>();
+                sorter = new MergeSorter<>();
                 scanPoints = ScanPointForTesting.unsortedScanPoints();
         }
 
@@ -25,11 +25,11 @@ class InsertionSorterTest {
         }
 
         /**
-         * Test method for sorting a list of @{@link ScanPoint} using Insertion Sort
+         * Test method for sorting a list of @{@link ScanPoint} using Merge Sort
          * from further ScanPoints to closer ScanPoints in the list.
          */
         @Test
-        void testInsertionSortOnScanPoints() {
+        void testMergeSortOnScanPoints() {
                 sorter.sort(scanPoints);
 
                 List<ScanPoint> expected = ScanPointForTesting.sortedScanPoints();

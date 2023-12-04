@@ -8,8 +8,6 @@ import org.junit.jupiter.api.Test;
 
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-
 class BubbleSorterTest {
 
         BubbleSorter<ScanPoint> sorter;
@@ -36,18 +34,6 @@ class BubbleSorterTest {
 
                 List<ScanPoint> expected = ScanPointForTesting.sortedScanPoints();
 
-                assertListsEqual(expected, scanPoints);
-        }
-
-        /**
-         * Asserts that each @{@link ScanPoint} in a list is equal to the ScanPoint in the same position of another list
-         *
-         * @param expected the expected list of ScanPoints
-         * @param actual   the actual list of ScanPoints after sorting
-         */
-        private void assertListsEqual(List<ScanPoint> expected, List<ScanPoint> actual) {
-                for (int i = 0; i < actual.size(); i++) {
-                        assertEquals(expected.get(i).getY(), (actual.get(i).getY()));
-                }
+                ScanPointTestUtils.assertListsEqual(expected, scanPoints);
         }
 }
