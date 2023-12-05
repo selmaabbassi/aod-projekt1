@@ -1,5 +1,6 @@
 package app;
 
+import algorithms.MergeSorter;
 import algorithms.Sorter;
 import model.ScanPoint;
 import view.PointCloudRenderGUI;
@@ -17,7 +18,7 @@ public class TestApp {
                 sorters.add(new algorithms.MockUpSorter<ScanPoint>());
                 sorters.add(new algorithms.InsertionSorter<ScanPoint>());
                 sorters.add(new algorithms.BubbleSorter<ScanPoint>());
-                sorters.add(new algorithms.MergeSorter<ScanPoint>());
+                sorters.add(new MergeSorter<ScanPoint>());
 
                 SwingUtilities.invokeLater(() -> new PointCloudRenderGUI(sorters));
         }
