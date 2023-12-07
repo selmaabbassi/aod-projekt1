@@ -10,35 +10,30 @@ import java.util.List;
  */
 public class InsertionSorter<T extends Comparable<? super T>> implements Sorter<T> {
 
-        /**
-         * Sorts a @{@link List} using @{@link Comparable#compareTo(Object)}
-         *
-         * @param list of generic types that extend @{@link Comparable}
-         */
-        @Override
-        public void sort(List<T> list) {
-                int high = list.size();
-                int low = 0;
+    @Override
+    public void sort(List<T> list) {
+        int high = list.size();
+        int low = 0;
 
-                for (int i = low + 1; i < high; i++) {
-                        for (int k = i; k >= low + 1; k--) {
-                                if (list.get(k).compareTo(list.get(k - 1)) < 0) {
-                                        swap(list, k, k - 1);
-                                }
-                        }
+        for (int i = low + 1; i < high; i++) {
+            for (int k = i; k >= low + 1; k--) {
+                if (list.get(k).compareTo(list.get(k - 1)) < 0) {
+                    swap(list, k, k - 1);
                 }
+            }
         }
+    }
 
-        private void swap(List<T> list, int i, int k) {
-                T elementToSwap = list.get(i);
-                T elementToSwapWith = list.get(k);
+    private void swap(List<T> list, int i, int k) {
+        T elementToSwap = list.get(i);
+        T elementToSwapWith = list.get(k);
 
-                list.set(i, elementToSwapWith);
-                list.set(k, elementToSwap);
-        }
+        list.set(i, elementToSwapWith);
+        list.set(k, elementToSwap);
+    }
 
-        @Override
-        public String toString() {
-                return getClass().toString();
-        }
+    @Override
+    public String toString() {
+        return getClass().getName();
+    }
 }
