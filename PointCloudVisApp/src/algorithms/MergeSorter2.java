@@ -20,7 +20,6 @@ public class MergeSorter2<T extends Comparable<? super T>> implements Sorter<T> 
                         mergeSortWorker(data, tmp, middle + 1, high);
                         for (int i = middle; i >= low; i--) {
                                 tmp.set(i, data.get(i));
-                                tmp.add(data.get(i));
                         }
                         for (int i = middle + 1; i <= high; i++) {
                                 tmp.set(middle + 1 + high - i, data.get(i));
