@@ -1,39 +1,51 @@
 package algorithms;
 
+import model.DataForTesting;
 import model.ScanPoint;
-import model.ScanPointForTesting;
-import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 class InsertionSorterTest {
 
-        InsertionSorter<ScanPoint> sorter;
-        List<ScanPoint> scanPoints;
+        InsertionSorter<ScanPoint> scanPointSorter;
+        InsertionSorter<Integer> integerSorter;
 
         @BeforeEach
         void setUp() {
-                sorter = new InsertionSorter<>();
-                scanPoints = ScanPointForTesting.unsortedScanPoints();
-        }
-
-        @AfterEach
-        void tearDown() {
-                scanPoints = null;
+                scanPointSorter = new InsertionSorter<>();
+                integerSorter = new InsertionSorter<>();
         }
 
         /**
-         * Test method for sorting a list of @{@link ScanPoint} using Insertion Sort
-         * from further ScanPoints to closer ScanPoints in the list.
+         * Test method for sorting a list of @{@link Integer} from min to max
+         * using Insertion Sort
+         */
+        @Test
+        void testInsertionSortOnIntegerList() {
+                List<Integer> integerList = DataForTesting.unsortedIntegers();
+                List<Integer> expected = DataForTesting.sortedIntegers();
+
+                integerSorter.sort(integerList);
+
+                assertEquals(expected, integerList);
+        }
+
+        /**
+         * Test method for sorting a list of @{@link ScanPoint}
+         * from further ScanPoints to closer ScanPoints in the list
+         * using Insertion Sort
          */
         @Test
         void testInsertionSortOnScanPoints() {
-                sorter.sort(scanPoints);
+                List<ScanPoint> scanPointList = DataForTesting.unsortedScanPoints();
+                List<ScanPoint> expected = DataForTesting.sortedScanPoints();
 
-                List<ScanPoint> expected = ScanPointForTesting.sortedScanPoints();
+                scanPointSorter.sort(scanPointList);
 
-                ScanPointTestUtils.assertListsEqual(expected, scanPoints);
+                TestUtils.assertEquals(expected, scanPointList);
         }
 }

@@ -25,7 +25,7 @@ public class MergeSorter<T extends Comparable<? super T>> implements Sorter<T> {
 
                 sort(left);
                 sort(right);
-                //merge when sorting sublists is done
+                //merge when dividing sublists is done
                 merge(left, right, list);
         }
 
@@ -34,23 +34,20 @@ public class MergeSorter<T extends Comparable<? super T>> implements Sorter<T> {
                 int rightIndex = 0;
                 int listIndex = 0;
 
-                //
+                //compare elements from left and right and set right order in original list
                 while (leftIndex < left.size() && rightIndex < right.size()) {
                         if (left.get(leftIndex).compareTo(right.get(rightIndex)) < 0) {
-
                                 list.set(listIndex++, left.get(leftIndex++));
                         } else {
-
                                 list.set(listIndex++, right.get(rightIndex++));
                         }
                 }
 
-                //
+                //Either of below while loop will execute
                 while (leftIndex < left.size()) {
                         list.set(listIndex++, left.get(leftIndex++));
                 }
 
-                //
                 while (rightIndex < right.size()) {
                         list.set(listIndex++, right.get(rightIndex++));
                 }

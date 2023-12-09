@@ -10,25 +10,36 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-class BubbleSorterTest {
-
-        BubbleSorter<ScanPoint> scanPointSorter;
-        BubbleSorter<Integer> integerSorter;
+class MergeSorter2Test {
+        MergeSorter2<ScanPoint> scanPointSorter;
+        MergeSorter2<Integer> integerSorter;
 
         @BeforeEach
         void setUp() {
-                scanPointSorter = new BubbleSorter<>();
-                integerSorter = new BubbleSorter<>();
+                scanPointSorter = new MergeSorter2<>();
+                integerSorter = new MergeSorter2<>();
         }
 
         /**
          * Test method for sorting a list of @{@link Integer} from min to max
-         * using Bubble Sort
+         * using Merge Sort
          */
         @Test
-        void testBubbleSortOnIntegerList() {
+        void testMergeSortOnIntegerList() {
                 List<Integer> integerList = DataForTesting.unsortedIntegers();
                 List<Integer> expected = DataForTesting.sortedIntegers();
+
+                System.out.println("Before sorting: " + Arrays.toString(integerList.toArray()));
+                integerSorter.sort(integerList);
+                System.out.println("After sorting: " + Arrays.toString(integerList.toArray()));
+
+                assertEquals(expected, integerList);
+        }
+
+        @Test
+        void testMergeSortOnOnIntegerListWithDuplicates() {
+                List<Integer> integerList = DataForTesting.unsortedIntegersWithDuplicates();
+                List<Integer> expected = DataForTesting.sortedIntegersWithDuplicates();
 
                 System.out.println("Before sorting: " + Arrays.toString(integerList.toArray()));
                 integerSorter.sort(integerList);
@@ -40,12 +51,24 @@ class BubbleSorterTest {
         /**
          * Test method for sorting a list of @{@link ScanPoint}
          * from further ScanPoints to closer ScanPoints in the list
-         * using Bubble Sort
+         * using Merge Sort
          */
         @Test
-        void testBubbleSortOnScanPoints() {
+        void testMergeSortOnScanPoints() {
                 List<ScanPoint> scanPoints = DataForTesting.unsortedScanPoints();
                 List<ScanPoint> expected = DataForTesting.sortedScanPoints();
+
+                System.out.println("Before sorting: " + Arrays.toString(scanPoints.toArray()));
+                scanPointSorter.sort(scanPoints);
+                System.out.println("After sorting: " + Arrays.toString(scanPoints.toArray()));
+
+                TestUtils.assertEquals(expected, scanPoints);
+        }
+
+        @Test
+        void testMergeSortOnScanPointsWithDuplicates() {
+                List<ScanPoint> scanPoints = DataForTesting.unsortedScanPointsWithDuplicates();
+                List<ScanPoint> expected = DataForTesting.sortedScanPointsWithDuplicates();
 
                 System.out.println("Before sorting: " + Arrays.toString(scanPoints.toArray()));
                 scanPointSorter.sort(scanPoints);
