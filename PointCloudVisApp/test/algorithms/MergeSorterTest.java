@@ -1,20 +1,19 @@
 package algorithms;
 
-import model.DataForTesting;
-import model.ScanPoint;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import java.util.Arrays;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 
-class MergeSorterTest {
-        MergeSorter<ScanPoint> scanPointSorter;
-        MergeSorter<Integer> integerSorter;
+class MergeSorterTest extends SorterTest {
 
+        /**
+         * Initialize @{@link MergeSorter} to execute tests in @{@link SorterTest}
+         * with Merge Sort
+         */
         @BeforeEach
         void setUp() {
                 scanPointSorter = new MergeSorter<>();
@@ -22,59 +21,86 @@ class MergeSorterTest {
         }
 
         /**
-         * Test method for sorting a list of @{@link Integer} from min to max
-         * using Merge Sort
+         * Test method for sorting a List of @{@link Integer} with 1000 values
+         * and checking the execution time
+         * using @{@link MergeSorter}
          */
         @Test
-        void testMergeSortOnIntegerList() {
-                List<Integer> integerList = DataForTesting.unsortedIntegers();
-                List<Integer> expected = DataForTesting.sortedIntegers();
+        void testMergeSortIntegerList1000Values() {
+                long startTime = System.nanoTime();
 
-                System.out.println("Before sorting: " + Arrays.toString(integerList.toArray()));
+                List<Integer> integerList = TestUtils.generateUnsortedList(1, 1000);
+                List<Integer> sorted = TestUtils.generateSortedList(1, 1000);
+
                 integerSorter.sort(integerList);
-                System.out.println("After sorting: " + Arrays.toString(integerList.toArray()));
 
-                assertEquals(expected, integerList);
-        }
+                long endTime = System.nanoTime();
+                long duration = endTime - startTime;
+                System.out.println("Execution time: " + duration + " ns");
 
-        @Test
-        void testMergeSortOnOnIntegerListWithDuplicates() {
-                List<Integer> integerList = DataForTesting.unsortedIntegersWithDuplicates();
-                List<Integer> expected = DataForTesting.sortedIntegersWithDuplicates();
-
-                System.out.println("Before sorting: " + Arrays.toString(integerList.toArray()));
-                integerSorter.sort(integerList);
-                System.out.println("After sorting: " + Arrays.toString(integerList.toArray()));
-
-                assertEquals(expected, integerList);
+                assertEquals(sorted, integerList);
         }
 
         /**
-         * Test method for sorting a list of @{@link ScanPoint}
-         * from further ScanPoints to closer ScanPoints in the list
-         * using Merge Sort
+         * Test method for sorting a List of @{@link Integer} with 10 000 values
+         * and checking the execution time
+         * using @{@link MergeSorter}
          */
         @Test
-        void testMergeSortOnScanPoints() {
-                List<ScanPoint> scanPoints = DataForTesting.unsortedScanPoints();
-                List<ScanPoint> expected = DataForTesting.sortedScanPoints();
+        void testMergeSortIntegerList10000Values() {
+                long startTime = System.nanoTime();
 
-                System.out.println("Before sorting: " + Arrays.toString(scanPoints.toArray()));
-                scanPointSorter.sort(scanPoints);
-                System.out.println("After sorting: " + Arrays.toString(scanPoints.toArray()));
+                List<Integer> integerList = TestUtils.generateUnsortedList(1, 10000);
+                List<Integer> sorted = TestUtils.generateSortedList(1, 10000);
 
-                TestUtils.assertEquals(expected, scanPoints);
+                integerSorter.sort(integerList);
+
+                long endTime = System.nanoTime();
+                long duration = endTime - startTime;
+                System.out.println("Execution time: " + duration + " ns");
+
+                assertEquals(sorted, integerList);
         }
 
+        /**
+         * Test method for sorting a List of @{@link Integer} with 100 000 values
+         * and checking the execution time
+         * using @{@link MergeSorter}
+         */
         @Test
-        void testMergeSortOnScanPointsWithDuplicates() {
-                List<ScanPoint> scanPoints = DataForTesting.unsortedScanPointsWithDuplicates();
-                List<ScanPoint> expected = DataForTesting.sortedScanPointsWithDuplicates();
+        void testMergeSortIntegerList100000Values() {
+                long startTime = System.nanoTime();
 
-                System.out.println("Before sorting: " + Arrays.toString(scanPoints.toArray()));
-                scanPointSorter.sort(scanPoints);
-                System.out.println("After sorting: " + Arrays.toString(scanPoints.toArray()));
+                List<Integer> integerList = TestUtils.generateUnsortedList(1, 100000);
+                List<Integer> sorted = TestUtils.generateSortedList(1, 100000);
 
-                TestUtils.assertEquals(expected, scanPoints);
+                integerSorter.sort(integerList);
+
+                long endTime = System.nanoTime();
+                long duration = endTime - startTime;
+                System.out.println("Execution time: " + duration + " ns");
+
+                assertEquals(sorted, integerList);
+        }
+
+        /**
+         * Test method for sorting a List of @{@link Integer} with 700 000 values
+         * and checking the execution time
+         * using @{@link MergeSorter}
+         */
+        @Test
+        void testMergeSortIntegerList700000Values() {
+                long startTime = System.nanoTime();
+
+                List<Integer> integerList = TestUtils.generateUnsortedList(1, 700000);
+                List<Integer> sorted = TestUtils.generateSortedList(1, 700000);
+
+                integerSorter.sort(integerList);
+
+                long endTime = System.nanoTime();
+                long duration = endTime - startTime;
+                System.out.println("Execution time: " + duration + " ns");
+
+                assertEquals(sorted, integerList);
         }
 }
