@@ -1,5 +1,6 @@
 package algorithms;
 
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -10,33 +11,25 @@ import java.util.List;
  */
 public class BubbleSorter<T extends Comparable<? super T>> implements Sorter<T> {
 
-    @Override
-    public void sort(List<T> list) {
-        boolean changed = true;
-        int step = 0;
+        @Override
+        public void sort(List<T> list) {
+                boolean changed = true;
+                int step = 0;
 
-        do {
-            changed = false;
-            for (int i = 0; i < list.size() - 1; i++) {
-                if (list.get(i).compareTo(list.get(i + 1)) > 0) {
-                    swap(list, i, i + 1);
-                    changed = true;
-                }
-            }
-            step++;
-        } while (changed);
-    }
+                do {
+                        changed = false;
+                        for (int i = 0; i < list.size() - 1; i++) {
+                                if (list.get(i).compareTo(list.get(i + 1)) > 0) {
+                                        Collections.swap(list, i, i + 1);
+                                        changed = true;
+                                }
+                        }
+                        step++;
+                } while (changed);
+        }
 
-    private void swap(List<T> list, int i, int k) {
-        T elementToSwap = list.get(i);
-        T elementToSwapWith = list.get(k);
-
-        list.set(i, elementToSwapWith);
-        list.set(k, elementToSwap);
-    }
-
-    @Override
-    public String toString() {
-        return getClass().getName();
-    }
+        @Override
+        public String toString() {
+                return getClass().getName();
+        }
 }

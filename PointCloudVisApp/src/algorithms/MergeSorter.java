@@ -8,6 +8,7 @@ import java.util.List;
  *
  * @param <T> @param <T> Generic type that extends @{@link Comparable}
  * @author Selma Abbassi
+ * @implNote updates the original list during merge for better time complexity and lesser overhead
  */
 public class MergeSorter<T extends Comparable<? super T>> implements Sorter<T> {
         @Override
@@ -36,20 +37,28 @@ public class MergeSorter<T extends Comparable<? super T>> implements Sorter<T> {
 
                 //compare elements from left and right and set right order in original list
                 while (leftIndex < left.size() && rightIndex < right.size()) {
-                        if (left.get(leftIndex).compareTo(right.get(rightIndex)) < 0) {
-                                list.set(listIndex++, left.get(leftIndex++));
+                        if (left.get(leftIndex).compareTo(right.get(rightIndex)) <= 0) {
+                                list.set(listIndex, left.get(leftIndex));
+                                listIndex++;
+                                leftIndex++;
                         } else {
-                                list.set(listIndex++, right.get(rightIndex++));
+                                list.set(listIndex, right.get(rightIndex));
+                                listIndex++;
+                                rightIndex++;
                         }
                 }
 
-                //Either of below while loop will execute
+                //Either of below while loop will execute if left or right still has elements after comparison
                 while (leftIndex < left.size()) {
-                        list.set(listIndex++, left.get(leftIndex++));
+                        list.set(listIndex, left.get(leftIndex));
+                        listIndex++;
+                        leftIndex++;
                 }
 
                 while (rightIndex < right.size()) {
-                        list.set(listIndex++, right.get(rightIndex++));
+                        list.set(listIndex, right.get(rightIndex));
+                        listIndex++;
+                        rightIndex++;
                 }
         }
 
