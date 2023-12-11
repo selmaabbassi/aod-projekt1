@@ -85,19 +85,17 @@ class MergeSorterTest extends SorterTest {
 
         /**
          * Test method for sorting a List of @{@link Integer} with 700 000 values
-         * and checking the execution time
          * using @{@link MergeSorter}
          */
         @Test
         void testMergeSortIntegerList700000Values() {
-                long startTime = System.nanoTime();
-
                 List<Integer> integerList = TestUtils.generateUnsortedList(1, 700000);
                 List<Integer> sorted = TestUtils.generateSortedList(1, 700000);
 
+                long startTime = System.nanoTime();
                 integerSorter.sort(integerList);
-
                 long endTime = System.nanoTime();
+
                 long duration = endTime - startTime;
                 System.out.println("Execution time: " + duration + " ns");
 

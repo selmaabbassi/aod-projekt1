@@ -26,7 +26,7 @@ public class TestUtils {
          *
          * @param minValue min value
          * @param maxValue max value
-         * @return randomly sorted list with @{@link Integer}
+         * @return unsorted list with @{@link Integer}
          */
         public static List<Integer> generateUnsortedList(int minValue, int maxValue) {
                 List<Integer> randomList = generateSortedList(minValue, maxValue);
